@@ -1,0 +1,26 @@
+{% load static %}
+<head>
+<link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.css' %}" />
+<style>
+    body {
+    background-color:lightgreen;
+    }
+</style>
+</head>
+<br>
+<br>
+<br>
+<br>
+<body bgcolor="lightgreen">
+<center>
+<h1>ACCOUNT CREATED SUCCESSFULLY</h1>
+    <form method="post">
+               {% csrf_token %}
+            <a href="/">
+              HOME
+            </a>
+              </form>
+    </center>
+
+
+</body>

@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+        <script>
+var subjectObject = {
+  "ALAPPUZHA": {
+    "AROOR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "CHERTHALA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "THURAVOOR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "KAYAMKULAM": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "ERNAKULAM": {
+    "ANGAMALY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "KOCHI": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "KAKKANAD": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "IDUKKI": {
+    "MUNNAR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "THODUPUZHA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "CHERUTHONI": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "KANNUR": {
+    "PAYYANUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "TALIPARAMBU": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "THALASHERRY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "KASARAGOD": {
+    "CHERKALA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "MANJESHWAR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "THATTUMAL": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "KOLLAM": {
+    "KOTTARAKARA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "MAYYANAD": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "OACHIRA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "KOTTAYAM": {
+    "CHANGANASHERRY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "KANJIRAPALLI": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "VAIKOM": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "KOZHIKHODE": {
+    "BALUSHERRY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "CHERUVANNUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "KOYILANDY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "MALAPPURAM": {
+    "PONNANI": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "TANUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "VALANCHERY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "PALAKKAD": {
+    "CHITTUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "OTTAPALAM": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "SHORNUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "PATHANAMTHITTA": {
+    "ADOOR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "PANDALAM": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "THIRUVALLA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "THIRUVANANTHAPURAM": {
+    "ATTINGAL": ["current account", "savings account", "fixed account"],
+    "NEYYATINGARA": ["current account", "savings account", "fixed account"],
+    "VARKALA": ["current account", "savings account", "fixed account"],
+  },
+  "THRISSUR": {
+    "CHAVAKKAD": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "CHALAKUDY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "GURUVAYUR": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+  "WAYANAD": {
+    "KALPETTA": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "MANATHAVADY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+    "SULTHAN BATHERY": ["CURRENT ACCOUNT", "SAVINGS ACCOUNT", "FIXED ACCOUNT"],
+  },
+}
+window.onload = function() {
+  var subjectSel = document.getElementById("subject");
+  var topicSel = document.getElementById("topic");
+  var chapterSel = document.getElementById("chapter");
+  for (var x in subjectObject) {
+    subjectSel.options[subjectSel.options.length] = new Option(x, x);
+  }
+  subjectSel.onchange = function() {
+
+ chapterSel.length = 1;
+ topicSel.length = 1;
+    //display correct values
+    for (var y in subjectObject[this.value]) {
+      topicSel.options[topicSel.options.length] = new Option(y, y);
+    }
+  }
+  topicSel.onchange = function() {
+ chapterSel.length = 1;
+    //display correct values
+    var z = subjectObject[subjectSel.value][this.value];
+    for (var i = 0; i < z.length; i++) {
+      chapterSel.options[chapterSel.options.length] = new Option(z[i], z[i]);
+    }
+  }
+}
+</script>
+<style>
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background-color: white;
+  width:1200px;
+  padding-left:200px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+/* Add padding to containers */
+.container {
+  padding: 16px;
+  background-color: white;
+}
+
+/* Full-width input fields */
+input[type=text], input[type=password] {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Overwrite default styles of hr */
+hr {
+  border: 1px solid #f1f1f1;
+  margin-bottom: 25px;
+}
+
+select {
+  width: 100%;
+  padding: 15px;
+  margin: 5px 0 22px 0;
+  display: inline-block;
+  border: none;
+  background: #f1f1f1;
+}
+
+input[type=text]:focus, input[type=password]:focus {
+  background-color: #ddd;
+  outline: none;
+}
+
+/* Set a style for the submit button */
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  padding-left:10;
+}
+
+.registerbtn:hover {
+  opacity: 1;
+}
+.logoutbtnn {
+  background-color: slateblue;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  padding-left:10;
+}
+
+.logoutbtnn:hover {
+  opacity: 1;
+}
+
+.registerbtn {
+  background-color: #04AA6D;
+  color: white;
+  padding: 16px 20px;
+  margin: 8px 0;
+  border: none;
+  cursor: pointer;
+  width: 100%;
+  opacity: 0.9;
+  padding-left:10;
+}
+
+/* Add a blue text color to links */
+a {
+  color: dodgerblue;
+}
+
+/* Set a grey background color and center the text of the "sign in" section */
+.signin {
+  background-color: #f1f1f1;
+  text-align: center;
+}
+
+.ab{
+background-color:lightpink;
+}
+
+
+
+
+</style>
+</head>
+<body>
+
+    <h1>ALPHA BANK</h1>
+
+
+<form method="post" action="{% url 'bank:formm' %}">
+    {% csrf_token %}
+  <div class="container ab">
+    <center><h1>Register Form</h1></center>
+
+    <p>Please fill in this form to create an account.</p>
+    <hr>
+
+    <label for="email"><b>NAME</b></label>
+    <input type="text" placeholder="Enter Name" name="email" id="email" >
+
+    <label for="psw"><b>DOB</b></label>
+    <input type="text" placeholder="Enter Date Of Birth" name="psw" id="psw" >
+<br>
+      <label for="email"><b>AGE</b></label>
+    <input type="text" placeholder="Enter Age" name="email" id="email" >
+
+      <br>
+      <label for="email"><b>GENDER</b></label><br><br>
+    <input type="radio"  name="gen" value="Male" >MALE
+      <input type="radio" name="gen" value="Female">FEMALE
+      <input type="radio" name="gen" value="Female">OTHERS
+
+      <br><br>
+      <label for="email"><b>PHONE NUMBER</b></label>
+    <input type="text" placeholder="Enter Your Number" name="email" id="email" >
+
+      <br>
+      <label for="email"><b>EMAIL</b></label>
+    <input type="text" placeholder="Enter Email" name="email" id="email" >
+
+   <br>
+      <label for="email"><b>ADDRESS</b></label>
+    <input type="text" placeholder="Enter Address" name="email" id="email">
+
+<!--      <label for="email"><b>DISTRICT</b></label><br>-->
+
+<!--      <select id="country-state" name="district">-->
+<!--    <option value="">Select district</option>-->
+<!--    <option value="AL">Alappuzha</option>-->
+<!--    <option value="ER">Ernakulam</option>-->
+<!--    <option value="KO">Kollam</option>-->
+<!--    <option value="TH">Thrissur</option>-->
+<!--    <option value="ID">Idukki</option>-->
+
+<!--</select>-->
+<!--<br><br>-->
+<!--      <label for="email"><b>BRANCH</b></label><br>-->
+<!--      <select id="AL" name="district">-->
+<!--    <option value="">Select Branch</option>-->
+<!--    <option value="ar">Aroor</option>-->
+<!--    <option value="ch">Cherthala</option>-->
+<!--     <option value="th">Thuravoor</option>-->
+<!--     <option value="ka">Kayamkulam</option>-->
+<!--</select>-->
+
+<div name="form1" id="form1" >
+<label for="email"><b>DISTRICT</b></label> <select name="subject" id="subject">
+<!--    <option value="" selected="selected">Select District</option>-->
+    <option value="" >Select </option>
+  </select>
+  <br><br>
+<label for="email"><b>BRANCHES</b></label> <select name="topic" id="topic">
+    <option value="" selected="selected">Please select District first</option>
+  </select>
+  <br><br>
+<label for="email"><b>ACCOUNT TYPE</b></label> <select name="chapter" id="chapter">
+    <option value="" selected="selected">Please select district and branch first</option>
+  </select>
+  <br><br>
+</div>
+
+      <br>
+      <label for="email"><b>MATERIALS PROVIDE</b></label><br><br>
+      Debit Card<input type="checkbox" name="mp" value="Debit Card">
+      Credit Card<input type="checkbox" name="mp" value="Credit Card">
+      Cheque Book<input type="checkbox" name="mp" value="Cheque Book">
+
+
+    <hr>
+<div >
+    <button type="submit" class="registerbtn">Submit</button>
+      <button type="reset"  class="logoutbtnn">logout</button>
+  </div>
+
+<!--  <div class="container signin">-->
+<!--    <p>Already have an account? <a href="#">Sign in</a>.</p>-->
+  </div>
+</form>
+
+</body>
+</html>
